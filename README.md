@@ -1,6 +1,6 @@
 
 <font size=3><div align='center'>  
-[[📖 arXiv Paper](#)] 
+[[📖 arXiv Paper](https://arxiv.org/abs/2503.07588)] 
 [[📊 LRS-VQA Dataset](Script/LRS_VQA_merged.jsonl)] 
 [[🛠️ Code](Script)] 
 
@@ -98,7 +98,7 @@ If you find this work helpful for your research, please consider giving this rep
 @article{luo2024lrsvqa,
     title={When Large Vision-Language Model Meets Large Remote Sensing Imagery: Coarse-to-Fine Text-Guided Token Pruning},
     author={Luo, Junwei and Zhang, Yingying and Yang, Xue and Wu, Kang and Zhu, Qi and Liang, Lei and Chen, Jingdong and Li, Yansheng},
-    journal={arXiv preprint arXiv:2503.xxxxx},
+    journal={arXiv preprint arXiv:2503.07588},
     year={2025}
 }
 
