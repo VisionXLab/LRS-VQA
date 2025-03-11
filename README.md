@@ -42,20 +42,26 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
 ## 📚 **LRS-VQA Benchmark**
 
 
-<div style="display: flex; justify-content: space-around;">
-    <div>
-        <img src="Figure/dataset.png" alt="Dataset Examples" style="width:100%; height:83%;">
-        <p align="center">Construction process of LRS-VQA.</p>
-    </div>
-    <div style="margin-left: 10px;"> <!-- 增加左边距 -->
-        <img src="Figure/intro.png" alt="Introduction" style="width:100%; height:83%;">
-        <p align="center">Comparison of existing methods.</p>
-    </div>
-</div>
-<p align="center"></p>
+
+<p align="center">
+    <img src="Figure/dataset.png" alt="Dataset Examples" style="max-width:60%; height:auto;">
+</p>
+<p align="center">
+    Construction process of LRS-VQA.
+</p>
 
 
-**Download and Evaluation**
+[MME-RealWorld](https://github.com/yfzhang114/MME-RealWorld) has provided a high-quality benchmark for multiple domains. In the field of remote sensing, we aim to further enrich the types of tasks and reflect the challenges of large RSI perception. **LRS-VQA** includes 1,657 images ranging in length from **1,024 to 27,328 pixels**, covering 8 different types of questions, and contains **7,333** QA pairs.
+
+
+<p align="center">
+    <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    The accuracy trends of Qwen2-VL across varying input maximum pixels. This demonstrates that accuracy on both the manually annotated MME-RealWorld-RS and our proposed LRS-VQA exhibit a positive correlation with resolution improvement, proving the effectiveness of LRS-VQA in evaluating LVLM's high-resolution RSI perception capabilities.
+</p>
+
+### Download and Evaluation
 
 To get started with the dataset and evaluation scripts, follow these steps:
 
@@ -74,17 +80,15 @@ To get started with the dataset and evaluation scripts, follow these steps:
   Once you have generated the result file using `llava_eval_LRSVQA.py`, you can use the following script to evaluate your model's performance:
   - [Script/evaluation_LRSVQA.py](Script/evaluation_LRSVQA.py)
 
-[MME-RealWorld](https://github.com/yfzhang114/MME-RealWorld) has provided a high-quality benchmark for multiple domains. In the field of remote sensing, we aim to further enrich the types of tasks and reflect the challenges of large RSI perception. **LRS-VQA** includes 1,657 images ranging in length from **1,024 to 27,328 pixels**, covering 8 different types of questions, and contains **7,333** QA pairs.
 
+### Results
 
 <p align="center">
-    <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+    <img src="Figure/res.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
 </p>
 <p align="center">
-    The accuracy trends of Qwen2-VL across varying input maximum pixels. This demonstrates that accuracy on both the manually annotated MME-RealWorld-RS and our proposed LRS-VQA exhibit a positive correlation with resolution improvement, proving the effectiveness of LRS-VQA in evaluating LVLM's high-resolution RSI perception capabilities.
+    Leaderboard and performance comparision.
 </p>
-
-
 
 ## Citation
 
