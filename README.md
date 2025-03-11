@@ -1,8 +1,8 @@
 
 <font size=3><div align='center'>  
 [[📖 arXiv Paper](#)] 
-[[📊 LRS-VQA Dataset](#)] 
-[[🛠️ Implementation Code](#)] 
+[[📊 LRS-VQA Dataset](Script/LRS_VQA_merged.jsonl)] 
+[[🛠️ Code](Script)] 
 
 </div></font>
 
@@ -11,7 +11,7 @@
 **[2025/3/11]** 🔥 **LRS-VQA** is now released! Code and weight will be released soon.
 
 
-This project focuses on  perception capabilities of Large Vision-Language Models (LVLMs) in the context of Large Remote Sensing Images (RSIs), covering the following key aspects:
+This project focuses on perception capabilities of Large Vision-Language Models (LVLMs) in the context of Large Remote Sensing Images (RSIs), covering the following key aspects:
 
 - **Region Focus Module (RFM):** Learns text-aware key vision token localization capabilities through attention distillation, enabling focused analysis on critical image tiles.
 - **Coarse-to-fine text-guided token pruning with Dynamic Image Pyramid (DIP):** Enhances both accuracy and efficiency in high-resolution settings.
@@ -19,20 +19,100 @@ This project focuses on  perception capabilities of Large Vision-Language Models
 
 ---
 
-## 🛠️ **Methodology: Coarse-to-Fine Token Pruning**
+## 🛠️ **Method**
 
-### Core Components
+ Our method introduces: (i) a Region Focus Module (RFM) that leverages text-aware region localization capability to identify critical vision tokens, and (ii) a coarse-to-fine image tile selection and vision token pruning strategy based on DIP, which is guided by RFM outputs and avoids directly processing the entire large imagery.
 
-#### 1. **Dynamic Image Pyramid (DIP)**
+#### 1. **Region Focus Module (RFM)**
 
+![Region Focus Module](Figure/rfm.png)
+<p align="center">Schematic illustration of the Region Focus Module (RFM).</p>
 
-#### 2. **Region Focus Module (RFM)**
+The RFM aims at learning text-aware key vision tokens localization by employing attention distillation, which allows the LVLM to focus on the most relevant parts of an image for detailed analysis.
 
+#### 2. **Coarse-to-Fine Token Pruning**
 
-#### 3. **Token Pruning Strategy**
+![Pipeline Overview](Figure/pipeline.png)
+<p align="center">The overall pipeline of our proposed method.</p>
 
+Initially, the DIP is constructed based on the input large RSI. At the low-resolution DIP level, the RFM provides attention distribution for the initial vision tokens, which guides the retrieval of corresponding image tiles from higher-resolution DIP levels or trigger token pruning at the current level. This iterative process could continue through the pyramid until reaching the original resolution.
 
 ---
 
-## 📚 **LRS-VQA Dataset**
+## 📚 **LRS-VQA Benchmark**
 
+
+<div style="display: flex; justify-content: space-around;">
+    <div>
+        <img src="Figure/dataset.png" alt="Dataset Examples" style="width:100%; height:83%;">
+        <p align="center">Construction process of LRS-VQA.</p>
+    </div>
+    <div style="margin-left: 10px;"> <!-- 增加左边距 -->
+        <img src="Figure/intro.png" alt="Introduction" style="width:100%; height:83%;">
+        <p align="center">Comparison of existing methods.</p>
+    </div>
+</div>
+<p align="center"></p>
+
+
+**Download and Evaluation**
+
+To get started with the dataset and evaluation scripts, follow these steps:
+
+- **Source Images:**
+  The source images are collected from multiple datasets:
+  - [FAIR1M](https://arxiv.org/abs/2103.05569) (train set)
+  - [GLH-Bridge](https://huggingface.co/datasets/ll-13/GLH-Bridge/tree/main) (test set)
+  - [STAR](https://huggingface.co/datasets/Zhuzi24/STAR/tree/main) (test set)
+  
+  You need to download the original images from these sources first.
+
+- **Evaluation:**
+  To evaluate your model on LRS-VQA, please refer to our provided script for generating results:
+  - [LLaVA1.5 Inference Script](Script/llava_eval_LRSVQA.py)
+  
+  Once you have generated the result file using `llava_eval_LRSVQA.py`, you can use the following script to evaluate your model's performance:
+  - [Script/evaluation_LRSVQA.py](Script/evaluation_LRSVQA.py)
+
+[MME-RealWorld](https://github.com/yfzhang114/MME-RealWorld) has provided a high-quality benchmark for multiple domains. In the field of remote sensing, we aim to further enrich the types of tasks and reflect the challenges of large RSI perception. **LRS-VQA** includes 1,657 images ranging in length from **1,024 to 27,328 pixels**, covering 8 different types of questions, and contains **7,333** QA pairs.
+
+
+<p align="center">
+    <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    The accuracy trends of Qwen2-VL across varying input maximum pixels. This demonstrates that accuracy on both the manually annotated MME-RealWorld-RS and our proposed LRS-VQA exhibit a positive correlation with resolution improvement, proving the effectiveness of LRS-VQA in evaluating LVLM's high-resolution RSI perception capabilities.
+</p>
+
+
+
+## Citation
+
+If you find this work helpful for your research, please consider giving this repo a star ⭐ and citing our paper:
+
+```bibtex
+@article{luo2024lrsvqa,
+    title={When Large Vision-Language Model Meets Large Remote Sensing Imagery: Coarse-to-Fine Text-Guided Token Pruning},
+    author={Luo, Junwei and Zhang, Yingying and Yang, Xue and Wu, Kang and Zhu, Qi and Liang, Lei and Chen, Jingdong and Li, Yansheng},
+    journal={arXiv preprint arXiv:2503.xxxxx},
+    year={2025}
+}
+
+@article{li2024scene,
+    title={STAR: A First-Ever Dataset and A Large-Scale Benchmark for Scene Graph Generation in Large-Size Satellite Imagery},
+    author={Li, Yansheng and Wang, Linlin and Wang, Tingzhu and Yang, Xue and Luo, Junwei and Wang, Qi and Deng, Youming and Wang, Wenbin and Sun, Xian and Li, Haifeng and Dang, Bo and Zhang, Yongjun and Yu, Yi and Yan Junchi},
+    journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+    year={2024},
+    publisher={IEEE}}
+
+@article{li2024learning,
+    title={Learning to Holistically Detect Bridges From Large-Size VHR Remote Sensing Imagery},
+    author={Li, Yansheng and Luo, Junwei and Zhang, Yongjun and Tan, Yihua and Yu, Jin-Gang and Bai, Song},
+    journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+    volume={44},
+    number={11},
+    pages={7778--7796},
+    year={2024},
+    publisher={IEEE}
+}
+```
