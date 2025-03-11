@@ -44,7 +44,7 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
 
 
 <p align="center">
-    <img src="Figure/dataset.png" alt="Dataset Examples" style="max-width:60%; height:auto;">
+    <img src="Figure/dataset.png" alt="Dataset Examples" width="60%">
 </p>
 <p align="center">
     Construction process of LRS-VQA.
