@@ -90,6 +90,14 @@ To get started with the dataset and evaluation scripts, follow these steps:
     Leaderboard and performance comparision.
 </p>
 
+<p align="center">
+  <img src="Figure/res2.png" alt="res2" width="45%" style="margin-right:20px;"/>
+  <img src="Figure/res3.png" alt="res3" width="45%"/>
+</p>
+<p align="center">
+    Efficiency comparision.
+</p>
+
 ## Citation
 
 If you find this work helpful for your research, please consider giving this repo a star ⭐ and citing our paper:
