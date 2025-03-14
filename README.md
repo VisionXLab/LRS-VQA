@@ -98,6 +98,57 @@ To get started with the dataset and evaluation scripts, follow these steps:
     Efficiency comparision.
 </p>
 
+## Detailed Result
+
+<details>
+<summary>Click to view detailed results in LRS-FAIR, LRS-Bridge, and LRS-STAR</summary>
+
+<p align="center">
+    <img src="Figure/res_lrs_fair.png" alt="Detailed results in LRS-FAIR" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-FAIR.
+</p>
+
+<p align="center">
+    <img src="Figure/res_lrs_bridge.png" alt="Detailed results in LRS-Bridge" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-Bridge.
+</p>
+
+<p align="center">
+    <img src="Figure/res_lrs_star.png" alt="Detailed results in LRS-STAR" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-STAR.
+</p>
+
+</details>
+
+<!-- <p align="center">
+    <img src="Figure/res_lrs_fair.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-FAIR.
+</p>
+
+
+<p align="center">
+    <img src="Figure/res_lrs_bridge.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-Bridge.
+</p>
+
+
+<p align="center">
+    <img src="Figure/res_lrs_star.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+</p>
+<p align="center">
+    Detailed results in LRS-STAR.
+</p> -->
+
 ## Citation
 
 If you find this work helpful for your research, please consider giving this repo a star ⭐ and citing our paper:
