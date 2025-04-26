@@ -1,7 +1,7 @@
 
 <font size=3><div align='center'>  
 [[📖 arXiv Paper](https://arxiv.org/abs/2503.07588)] 
-[[📊 LRS-VQA Dataset](Script/LRS_VQA_merged.jsonl)] 
+[[📊 LRS-VQA Dataset](https://huggingface.co/datasets/ll-13/LRS-VQA)] 
 [[🛠️ Code](Script)] 
 
 </div></font>
@@ -71,7 +71,7 @@ To get started with the dataset and evaluation scripts, follow these steps:
   - [GLH-Bridge](https://huggingface.co/datasets/ll-13/GLH-Bridge/tree/main) (test set)
   - [STAR](https://huggingface.co/datasets/Zhuzi24/STAR/tree/main) (test set)
   
-  You need to download the original images from these sources first.
+  The LRS-VQA dataset can be found at https://huggingface.co/datasets/ll-13/LRS-VQA.
 
 - **Evaluation:**
   To evaluate your model on LRS-VQA, please refer to our provided script for generating results:
