@@ -11,12 +11,15 @@
 **[2025/3/11]** 🔥 **LRS-VQA** is now released! Code and weight will be released soon.
 
 
-This project focuses on perception capabilities of Large Vision-Language Models (LVLMs) in the context of Large Remote Sensing Images (RSIs), covering the following key aspects:
+This project focuses on efficient perception of Large Remote Sensing Images (RSIs) using Large Vision-Language Models (LVLMs) under limited resources, covering the following key aspects:
 
-- **Region Focus Module (RFM):** Learns text-aware key vision token localization capabilities through attention distillation, enabling focused analysis on critical image tiles.
-- **Coarse-to-fine text-guided token pruning with Dynamic Image Pyramid (DIP):** Enhances both accuracy and efficiency in high-resolution settings.
-- **LRS-VQA:** A new benchmark for Large RSI perception, featuring 7,333 QA pairs across 8 categories, with images reaching up to 27,328 pixels in length.
+- **Coarse-to-Fine Focusing & Pruning:** An iterative process that zooms from coarse, low-resolution overviews into fine-grained, high-resolution views to analyze text-related regions.
+- **Region Focus Module (RFM):** Learns text-aware key region localization capabilities from LVLM through attention distillation, enabling focused analysis on critical image tiles.
+- **LRS-VQA:** A new benchmark for Large RSI perception, featuring 7,333 QA pairs across 8 categories, with images reaching up to 27,328 pixels in length and an average size of 7,099×6,329 pixels.
 
+## TODO 📝
+- [ ] Release model weight and inference code.
+- [ ] Release training code and script.
 ---
 
 ## 🛠️ **Method**
