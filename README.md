@@ -34,7 +34,7 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 The RFM aims at learning text-aware key vision tokens localization from the LLM part of LVLM by employing **attention distillation**, which allows it to focus on the most relevant parts of an image for detailed analysis. 
 
 
-<font color="gray">The phenomenon within the LVLMs was first observed in small-size general images (e.g., [this paper](https://vision-of-vlm.github.io/  )): </font>
+`The phenomenon within the LVLMs was first observed in small-size general images (e.g., [this paper](https://vision-of-vlm.github.io/  )):`
 
 ![text-based attention convergence in general images](Figure/attention_on_small_general_image.png)
 <!-- <p align="center">Text-based attention convergence in general images.</p> -->
@@ -50,7 +50,6 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
 ---
 
 ## 📚 **LRS-VQA Benchmark**
-
 
 
 <p align="center">
