@@ -13,11 +13,11 @@
 
 This project focuses on efficient perception of Large Remote Sensing Images (RSIs) using Large Vision-Language Models (LVLMs) under limited resources, covering the following key aspects:
 
-- **Coarse-to-Fine Focusing & Pruning:** An iterative process that zooms from coarse, low-resolution overviews into fine-grained, high-resolution views to analyze text-related regions.
+- **Coarse-to-Fine Focusing & Pruning:** An iterative process that zooms from coarse, low-resolution overviews into fine-grained, high-resolution views to focus and analyze text-related regions.
 - **Region Focus Module (RFM):** Learns text-aware key region localization capabilities from LVLM through attention distillation, enabling focused analysis on critical image tiles.
 - **LRS-VQA:** A new benchmark for Large RSI perception, featuring 7,333 QA pairs across 8 categories, with images reaching up to 27,328 pixels in length and an average size of 7,099×6,329 pixels.
 
-## TODO 📝
+## 📝 TODO 
 - [ ] Release model weight and inference code.
 - [ ] Release training code and script.
 ---
@@ -31,7 +31,14 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 ![Region Focus Module](Figure/rfm.png)
 <p align="center">Schematic illustration of the Region Focus Module (RFM).</p>
 
-The RFM aims at learning text-aware key vision tokens localization by employing attention distillation, which allows the LVLM to focus on the most relevant parts of an image for detailed analysis.
+The RFM aims at learning text-aware key vision tokens localization from the LLM part of LVLM by employing **attention distillation**, which allows it to focus on the most relevant parts of an image for detailed analysis. 
+
+
+<font color="gray">The phenomenon within the LVLMs was first observed in small-size general images (e.g., [this paper](https://vision-of-vlm.github.io/  )): </font>
+
+![text-based attention convergence in general images](Figure/attention_on_small_general_image.png)
+<!-- <p align="center">Text-based attention convergence in general images.</p> -->
+
 
 #### 2. **Coarse-to-Fine Token Pruning**
 
@@ -58,7 +65,7 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
 
 
 <p align="center">
-    <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
+    <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:90%; height:auto;">
 </p>
 <p align="center">
     The accuracy trends of Qwen2-VL across varying input maximum pixels. This demonstrates that accuracy on both the manually annotated MME-RealWorld-RS and our proposed LRS-VQA exhibit a positive correlation with resolution improvement, proving the effectiveness of LRS-VQA in evaluating LVLM's high-resolution RSI perception capabilities.
@@ -129,28 +136,6 @@ To get started with the dataset and evaluation scripts, follow these steps:
 
 </details>
 
-<!-- <p align="center">
-    <img src="Figure/res_lrs_fair.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
-</p>
-<p align="center">
-    Detailed results in LRS-FAIR.
-</p>
-
-
-<p align="center">
-    <img src="Figure/res_lrs_bridge.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
-</p>
-<p align="center">
-    Detailed results in LRS-Bridge.
-</p>
-
-
-<p align="center">
-    <img src="Figure/res_lrs_star.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
-</p>
-<p align="center">
-    Detailed results in LRS-STAR.
-</p> -->
 
 ## Citation
 
