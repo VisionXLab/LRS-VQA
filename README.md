@@ -96,7 +96,7 @@ To get started with the dataset and evaluation scripts, follow these steps:
     <img src="Figure/res.png" alt="Resolution vs Accuracy" style="max-width:100%; height:auto;">
 </p>
 <p align="center">
-    Leaderboard and performance comparision.
+    Leaderboard and performance comparision. Average Accuracy is reported for each dataset.
 </p>
 
 <p align="center">

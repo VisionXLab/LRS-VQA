@@ -28,67 +28,73 @@ def are_synonyms(word1, word2):
                 return True
     return False
 
-def evaluate_dataset(dataset_data):
-    all_categories = set(item['category'] for item in dataset_data)
-    category_correct = {category: 0 for category in all_categories}
-    category_incorrect = {category: 0 for category in all_categories}
-    correct = 0
-    incorrect = 0
-    
-    for item in dataset_data:
-        gt = item['gt_answer'].lower()
-        # 处理answer为None的情况
-        answer = item['answer']
-        if answer is None:
-            answer = ""  # 将None转换为空字符串
-        else:
-            answer = answer.lower().rstrip('.')  # 移除答案末尾的句点
-            
-        category = item['category'].lower()
-        
-        if gt == answer:
-            correct += 1
-            category_correct[category] += 1
-        else:
-            if answer and are_synonyms(gt, answer):  # 确保answer不为空再检查同义词
-                print(f'synonyms:{gt} and {answer}')
-                correct += 1
-                category_correct[category] += 1
-            else:
-                incorrect += 1
-                category_incorrect[category] += 1
+def evaluate_dataset(base):
 
-    # 打印结果
-    print(f'Correct: {correct}')
-    print(f'Incorrect: {incorrect}')
-    print(f'Total: {correct + incorrect}')
+    all_categories = set(item['category'] for item in base)
+    category_correct = {category: 0 for category in all_categories}
+    category_total = {category: 0 for category in all_categories}
+
+    total_correct = 0
+    total_samples = len(base)
+
+    print("Processing evaluations...")
+    for item in tqdm(base):
+        gt = item.get('ground_truth', '').lower()
+        answer = item.get('text', '').lower()
+        category = item.get('category')
+
+        if not all([gt, category]):
+            print(f"Skipping item due to missing 'ground_truth' or 'category': {item}")
+            total_samples -=1  
+            continue
+
+        is_correct = False
+        if gt == answer:
+            is_correct = True
+        elif are_synonyms(gt, answer):
+            print(f"Synonym match (counted as correct): ground_truth='{gt}', answer='{answer}'")
+            is_correct = True
+
+        if is_correct:
+            total_correct += 1
+            category_correct[category] += 1
+        
+        category_total[category] += 1
+
+    print("\n--- Evaluation Results ---")
+    print(f'Total Correct: {total_correct}')
+    print(f'Total Incorrect: {total_samples - total_correct}')
+    print(f'Total Samples: {total_samples}')
+    print("-" * 25)
+
+    print("Category-wise Accuracies:")
+    sorted_categories = sorted(list(all_categories))
     
-    # 计算每个类别的精度
-    percentage_list = []
-    print("\nCategory-wise accuracies:")
-    sorted_categories = sorted(category_correct.keys())
-    
-    overall_correct = 0
-    overall_total = 0
-    
+    category_accuracies = []
     for cat in sorted_categories:
         cat_corr = category_correct[cat]
-        cat_total = cat_corr + category_incorrect[cat]
-        cat_acc = cat_corr / cat_total if cat_total > 0 else 0
-        print(f"{cat}: {cat_corr}/{cat_total} ({cat_acc * 100:.2f}%)")
-        percentage_list.append(cat_acc * 100)
-        overall_correct += cat_corr
-        overall_total += cat_total
-    
-    overall_acc = overall_correct / overall_total if overall_total > 0 else 0
-    print(f"Overall Acc: {overall_acc*100:.2f}%")
-    percentage_list.append(overall_acc * 100)
-    
-    # 打印纯数字的百分比值
-    print("\nPercentages:")
-    for p in percentage_list:
-        s = f"{p:.2f}".rstrip('0').rstrip('.')
-        print(s)
+        cat_total = category_total[cat]
+        if cat_total > 0:
+            cat_acc = cat_corr / cat_total
+            print(f"{cat:<20}: {cat_corr}/{cat_total} ({cat_acc * 100:.2f}%)")
+            category_accuracies.append(cat_acc)
+        else:
+            print(f"{cat:<20}: 0/0 (N/A)")
+
+    print("-" * 25)
+
+    if total_samples > 0:
+        overall_acc_oa = total_correct / total_samples
+        print(f"Overall Accuracy (OA): {overall_acc_oa * 100:.2f}%")
+    else:
+        print("Overall Accuracy (OA): N/A (No samples found)")
+
+    if category_accuracies:
+        average_acc_aa = sum(category_accuracies) / len(category_accuracies)
+        print(f"Average Accuracy (AA): {average_acc_aa * 100:.2f}%")
+    else:
+        print("Average Accuracy (AA): N/A (No categories with samples found)")
+
 
 def evaluation_metrics(data_path):
     # 读取数据
