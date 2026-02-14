@@ -1,14 +1,29 @@
+<div align='center'>
+<font size=3>
 
-<font size=3><div align='center'>  
-[[📖 arXiv Paper](https://arxiv.org/abs/2503.07588)] 
+[[📖 Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Luo_When_Large_Vision-Language_Model_Meets_Large_Remote_Sensing_Imagery_Coarse-to-Fine_ICCV_2025_paper.html)] 
 [[📊 LRS-VQA Dataset](https://huggingface.co/datasets/ll-13/LRS-VQA)] 
-[[🛠️ Code](Script)] 
+[[📊 Model](https://www.modelscope.cn/)] 
+[[🛠️ Code](LRS-VQA-Code)] 
 
-</div></font>
+</font>
+</div>
 
 ## When Large Vision-Language Model Meets Large Remote Sensing Imagery: Coarse-to-Fine Text-Guided Token Pruning
 
-**[2025/3/11]** 🔥 **LRS-VQA** is now released! Code and weight will be released soon.
+<h3 align="center">
+  <a href="#-todo">TODO</a> |
+  <a href="#-method">Method</a> |
+  <a href="#-lrs-vqa-benchmark">Benchmark</a> |
+  <a href="#-getting-started">Getting Started</a> |
+  <a href="#-inference">Inference</a> |
+  <a href="#citation">Citation</a>
+</h3>
+<br>
+
+**[2026/2/14]** Inference code and model weight are released.  
+**[2025/6/26]** Our paper is accepted by ICCV 2025.  
+**[2025/3/11]** **LRS-VQA** Benchmark is now released!
 
 
 This project focuses on efficient perception of Large Remote Sensing Images (RSIs) using Large Vision-Language Models (LVLMs) under limited resources, covering the following key aspects:
@@ -18,15 +33,16 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 - **LRS-VQA:** A new benchmark for Large RSI perception, featuring 7,333 QA pairs across 8 categories, with images reaching up to 27,328 pixels in length and an average size of 7,099×6,329 pixels.
 
 ## 📝 TODO 
-- [ ] Release model weight and inference code.
+- [x] Release benchmark.
+- [x] Release model weight and inference code.
 - [ ] Release training code and script.
 ---
 
-## 🛠️ **Method**
+## 🛠️ Method
 
- Our method introduces: (i) a Region Focus Module (RFM) that leverages text-aware region localization capability to identify critical vision tokens, and (ii) a coarse-to-fine image tile selection and vision token pruning strategy based on DIP, which is guided by RFM outputs and avoids directly processing the entire large imagery.
+Our method introduces: (i) a **Region Focus Module (RFM)** that leverages text-aware region localization capability to identify critical vision tokens, and (ii) a **coarse-to-fine image tile selection and vision token pruning strategy** based on DIP, which is guided by RFM outputs and avoids directly processing the entire large imagery.
 
-#### 1. **Region Focus Module (RFM)**
+#### 1. Region Focus Module (RFM)
 
 ![Region Focus Module](Figure/rfm.png)
 <p align="center">Schematic illustration of the Region Focus Module (RFM).</p>
@@ -40,7 +56,7 @@ The RFM aims at learning text-aware key vision tokens localization from the LLM 
 <!-- <p align="center">Text-based attention convergence in general images.</p> -->
 
 
-#### 2. **Coarse-to-Fine Token Pruning**
+#### 2. Coarse-to-Fine Token Pruning
 
 ![Pipeline Overview](Figure/pipeline.png)
 <p align="center">The overall pipeline of our proposed method.</p>
@@ -49,7 +65,7 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
 
 ---
 
-## 📚 **LRS-VQA Benchmark**
+## 📚 LRS-VQA Benchmark
 
 
 <p align="center">
@@ -59,9 +75,7 @@ Initially, the DIP is constructed based on the input large RSI. At the low-resol
     Construction process of LRS-VQA.
 </p>
 
-
 [MME-RealWorld](https://github.com/yfzhang114/MME-RealWorld) has provided a high-quality benchmark for multiple domains. In the field of remote sensing, we aim to further enrich the types of tasks and reflect the challenges of large RSI perception. **LRS-VQA** includes 1,657 images ranging in length from **1,024 to 27,328 pixels**, covering 8 different types of questions, and contains **7,333** QA pairs.
-
 
 <p align="center">
     <img src="Figure/resolution_acc.png" alt="Resolution vs Accuracy" style="max-width:90%; height:auto;">
@@ -136,16 +150,142 @@ To get started with the dataset and evaluation scripts, follow these steps:
 </details>
 
 
+---
+
+## 🚀 Getting Started
+
+### 1. Environment Setup
+
+We recommend using Conda to manage the environment. This project requires **Python 3.10** and is tested on NVIDIA A100/A800 GPUs.
+
+```bash
+# Create and activate the conda environment
+conda create -n lrsvqa python=3.10 -y
+conda activate lrsvqa
+
+# Upgrade pip
+pip install --upgrade pip
+```
+
+### 2. Install PyTorch
+
+The required PyTorch version depends on your **NVIDIA Driver Version** (check with `nvidia-smi`).
+
+* **For Modern Drivers (Version >= 525.60):**
+```bash
+pip install torch==2.1.2 torchvision==0.16.2 --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
+```
+
+* **For Older Drivers (Version < 525.60, e.g., 470.xx):**
+If you encounter a `RuntimeError` related to an old NVIDIA driver, you must use the CUDA 11.8 compiled version:
+```bash
+pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 --extra-index-url [https://download.pytorch.org/whl/cu118](https://download.pytorch.org/whl/cu118)
+```
+
+### 3. Install Dependencies
+
+```bash
+cd LRS-VQA-Code
+# Install base and training requirements
+pip install -e .
+pip install -e ".[train]"
+
+# Install specific versions of other key packages
+pip install flash-attn==2.6.3 --no-build-isolation
+pip install bitsandbytes==0.43.3 safetensors==0.4.5 pydantic==2.9.1 peft==0.3.0
+```
+
+---
+
+
+## ⚙️ Inference
+
+### Step 1: Apply Environment Patch (Crucial)
+
+⚠️ **Important**: Our model includes custom modifications that require patching your local `transformers` library installation. Before running inference, please copy our modified modeling files into your conda environment.
+
+```bash
+# Get the site-packages path of your conda environment
+SITE_PACKAGES=$(python -c 'import site; print(site.getsitepackages()[0])')
+
+# Copy the patched files (Execute from project root)
+cp ./LRS-VQA-Code/llava/model/multimodal_encoder/transformers/models/llama/modeling_llama.py $SITE_PACKAGES/transformers/models/llama/
+cp ./LRS-VQA-Code/llava/model/multimodal_encoder/transformers//models/qwen2/modeling_qwen2.py $SITE_PACKAGES/transformers/models/qwen2/
+cp ./LRS-VQA-Code/llava/model/multimodal_encoder/transformers//modeling_outputs.py $SITE_PACKAGES/transformers/
+
+```
+
+### Step 2: Prepare Data
+
+Depending on which benchmark you wish to evaluate, follow the corresponding instructions below.
+
+#### Option A: For MME-RealWorld (Remote Sensing) Evaluation
+
+1. **Download**: Obtain the dataset from the official [MME-RealWorld repository](https://github.com/MME-Benchmarks/MME-RealWorld).
+2. **Organize**: Arrange your files as shown below. The evaluation script will need the path to this main data directory.
+
+```text
+/path/to/your/MME_RealWorld/
+├── MME_RealWorld_RS.json
+├── evaluation/
+│   └── eval_your_results.py
+└── remote_sensing/
+    ├── 03553_Toronto.png
+    ├── 03555_Toronto.png
+    └── ...
+
+```
+
+#### Option B: For LRS-VQA Benchmark Evaluation
+
+1. **Download**: Download the dataset from our [Hugging Face repository](https://huggingface.co/datasets/ll-13/LRS-VQA).
+2. **Extract**: Place all downloaded parts in the same directory. Use `7-Zip` (Windows) or `p7zip` (Linux) to extract the archive by running the command on the first file (`.001`).
+
+```bash
+# Example using p7zip on Linux
+7z x LRS_VQA.7z.001
+```
+
+3. **Verify Structure**: After extraction, you will have an `LRS_VQA` folder. The evaluation script expects the path to its **parent directory**. Ensure your final structure looks like this:
+
+```text
+/path/to/dataset_parent_directory/
+└── LRS_VQA/
+    ├── LRS_VQA_merged.jsonl
+    └── image/
+        ├── 15565.tif
+        ├── 9043.tif
+        └── ...
+```
+
+### Step 3: Run Inference
+
+We provide shell scripts to simplify the evaluation process.
+
+**To evaluate on LRS-VQA:**
+
+```bash
+bash LRS-VQA-Code/eval_lrs_vqa.sh
+```
+
+**To evaluate on MME-RealWorld-RS:**
+
+```bash
+bash LRS-VQA-Code/eval_mme-realworld-rs.sh
+```
+
 ## Citation
 
 If you find this work helpful for your research, please consider giving this repo a star ⭐ and citing our paper:
 
 ```bibtex
-@article{luo2024lrsvqa,
+@InProceedings{Luo_2025_ICCV,
     title={When Large Vision-Language Model Meets Large Remote Sensing Imagery: Coarse-to-Fine Text-Guided Token Pruning},
     author={Luo, Junwei and Zhang, Yingying and Yang, Xue and Wu, Kang and Zhu, Qi and Liang, Lei and Chen, Jingdong and Li, Yansheng},
-    journal={arXiv preprint arXiv:2503.07588},
-    year={2025}
+    booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month={October},
+    year={2025},
+    pages={9206-9217}
 }
 
 @article{li2024scene,
