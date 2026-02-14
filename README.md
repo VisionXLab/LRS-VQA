@@ -12,7 +12,6 @@
 ## When Large Vision-Language Model Meets Large Remote Sensing Imagery: Coarse-to-Fine Text-Guided Token Pruning
 
 <h3 align="center">
-  <a href="#-todo">TODO</a> |
   <a href="#-method">Method</a> |
   <a href="#-lrs-vqa-benchmark">Benchmark</a> |
   <a href="#-getting-started">Getting Started</a> |
@@ -22,7 +21,7 @@
 <br>
 
 **[2026/2/14]** Inference code and model weight are released.  
-**[2025/6/26]** Our paper is accepted by ICCV 2025.  
+**[2025/6/26]** Our paper is accepted by **ICCV 2025**.  
 **[2025/3/11]** **LRS-VQA** Benchmark is now released!
 
 
@@ -34,8 +33,8 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 
 ## 📝 TODO 
 - [x] Release benchmark.
-- [x] Release model weight and inference code.
-- [ ] Release training code and script.
+- [x] Release model weight and code.
+- [ ] Release training script.
 ---
 
 ## 🛠️ Method
@@ -233,7 +232,6 @@ Depending on which benchmark you wish to evaluate, follow the corresponding inst
     ├── 03553_Toronto.png
     ├── 03555_Toronto.png
     └── ...
-
 ```
 
 #### Option B: For LRS-VQA Benchmark Evaluation
