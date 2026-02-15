@@ -20,7 +20,7 @@
 <br>
 
 **[2026/2/14]** Code and model weights are released.  
-**[2025/6/26]** Our paper is accepted by **ICCV 2025**! 
+**[2025/6/26]** Our paper is accepted by **ICCV 2025**!  
 **[2025/3/11]** **LRS-VQA** Benchmark is now released!
 
 
