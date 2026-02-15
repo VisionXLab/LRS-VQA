@@ -19,10 +19,12 @@
 </h3>
 <br>
 
-**[2026/2/14]** Code and model weights are released.  
-**[2025/6/26]** Our paper is accepted by **ICCV 2025**!  
-**[2025/3/11]** **LRS-VQA** Benchmark is now released!
 
+* **`2026/2/14`** 🌟 Code and model weights are released.  
+* **`2025/6/26]`** 🌟 Our paper is accepted by **ICCV 2025**!  
+* **`2025/3/11`** 🌟 **LRS-VQA** Benchmark is now released!
+
+---
 
 This project focuses on efficient perception of Large Remote Sensing Images (RSIs) using Large Vision-Language Models (LVLMs) under limited resources, covering the following key aspects:
 
