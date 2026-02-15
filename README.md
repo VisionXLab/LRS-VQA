@@ -19,8 +19,8 @@
 </h3>
 <br>
 
-**[2026/2/14]** Inference code and model weight are released.  
-**[2025/6/26]** Our paper is accepted by **ICCV 2025**.  
+**[2026/2/14]** Code and model weights are released.  
+**[2025/6/26]** Our paper is accepted by **ICCV 2025**! 
 **[2025/3/11]** **LRS-VQA** Benchmark is now released!
 
 
@@ -32,7 +32,7 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 
 ## 📝 TODO 
 - [x] Release benchmark.
-- [ ] Release code and upload model weights(uploading).
+- [x] Release code and model weights.
 - [ ] Release training script.
 ---
 
