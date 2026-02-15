@@ -2,8 +2,7 @@
 <font size=3>
 
 [[📖 Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Luo_When_Large_Vision-Language_Model_Meets_Large_Remote_Sensing_Imagery_Coarse-to-Fine_ICCV_2025_paper.html)] 
-[[📊 LRS-VQA Dataset](https://huggingface.co/datasets/ll-13/LRS-VQA)] 
-[[📊 Model](https://www.modelscope.cn/)] 
+[[📊 LRS-VQA Dataset](https://huggingface.co/datasets/ll-13/LRS-VQA)]
 [[🛠️ Code](LRS-VQA-Code)] 
 
 </font>
@@ -33,7 +32,7 @@ This project focuses on efficient perception of Large Remote Sensing Images (RSI
 
 ## 📝 TODO 
 - [x] Release benchmark.
-- [x] Release model weight and code.
+- [ ] Release code and upload model weights(uploading).
 - [ ] Release training script.
 ---
 
@@ -152,6 +151,16 @@ To get started with the dataset and evaluation scripts, follow these steps:
 ---
 
 ## 🚀 Getting Started
+
+### Model Weights
+
+We provide the model weights on ModelScope. Hugging Face weights will be uploaded soon.
+
+| Model Base | ModelScope | Hugging Face |
+| :--- | :---: | :---: |
+| **LLaVA-NeXT-7B** (Qwen2) | [![ModelScope](https://img.shields.io/badge/ModelScope-Download-624AFF)](https://www.modelscope.cn/models/llhjl123/llava-largeimg-Qwen2-7B) | [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-lightgrey)]() |
+| **LLaVA-1.5-7B** (Vicuna) | [![ModelScope](https://img.shields.io/badge/ModelScope-Download-624AFF)](https://www.modelscope.cn/models/llhjl123/llava-largeimg-Vicuna-7B) | [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-lightgrey)]() |
+
 
 ### 1. Environment Setup
 
