@@ -156,12 +156,12 @@ To get started with the dataset and evaluation scripts, follow these steps:
 
 ### Model Weights
 
-We provide the model weights on ModelScope. Hugging Face weights will be uploaded soon.
+We provide the model weights on ModelScope and Hugging Face.
 
 | Model Base | ModelScope | Hugging Face |
 | :--- | :---: | :---: |
 | **LLaVA-NeXT-7B** (Qwen2) | [![ModelScope](https://img.shields.io/badge/ModelScope-Download-624AFF)](https://www.modelscope.cn/models/llhjl123/llava-largeimg-Qwen2-7B) | [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Download-624AFF)](https://huggingface.co/ll-13/llava-largeimg-Qwen2-7B) |
-| **LLaVA-1.5-7B** (Vicuna) | [![ModelScope](https://img.shields.io/badge/ModelScope-Download-624AFF)](https://www.modelscope.cn/models/llhjl123/llava-largeimg-Vicuna-7B) | [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-lightgrey)]() |
+| **LLaVA-1.5-7B** (Vicuna) | [![ModelScope](https://img.shields.io/badge/ModelScope-Download-624AFF)](https://www.modelscope.cn/models/llhjl123/llava-largeimg-Vicuna-7B) | [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Download-624AFF)](https://huggingface.co/ll-13/llava-largeimg-Vicuna-7B) |
 
 
 ### 1. Environment Setup
